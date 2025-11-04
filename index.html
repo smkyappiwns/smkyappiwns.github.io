@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta name="google-site-verification" content="yEH5npNg0bZLH7TGe032lJv82IDyBrl976KG90U-vlY" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplikasi Karya Siswa SMK YAPPI Wonosari</title>
 
   <style>
     :root {
-      --primary: #14532d;  /* Hijau gelap elegan */
+      --primary: #14532d;
       --primary-light: #1e8144;
       --bg: #f4f6f5;
       --text: #222;
+      --card-bg: #ffffff;
       --border: #ddd;
+    }
+
+    /* Dark Mode Theme Variables */
+    body.dark {
+      --bg: #111;
+      --text: #eaeaea;
+      --card-bg: #1a1a1a;
+      --border: #333;
     }
 
     body {
@@ -19,20 +27,29 @@
       padding: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       background: var(--bg);
+      color: var(--text);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
     }
 
     .wrapper {
-      background: white;
+      background: var(--card-bg);
       padding: 30px 28px;
       border-radius: 12px;
       width: 100%;
       max-width: 480px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       border: 1px solid var(--border);
+      animation: fadeIn 0.6s ease;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .logo {
@@ -46,7 +63,6 @@
       font-weight: 600;
       text-align: center;
       margin-bottom: 22px;
-      color: var(--text);
     }
 
     .menu {
@@ -56,29 +72,42 @@
     }
 
     .menu a {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
       padding: 14px;
       background: var(--primary);
       color: white;
       text-decoration: none;
-      text-align: center;
       border-radius: 6px;
       font-size: 15px;
       font-weight: 500;
       letter-spacing: .2px;
-      transition: 0.25s;
+      transition: .25s;
     }
 
     .menu a:hover {
       background: var(--primary-light);
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .menu a span.icon {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: .25s;
+      font-size: 17px;
+    }
+
+    .menu a:hover span.icon {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .footer {
       margin-top: 20px;
       font-size: 12px;
       text-align: center;
-      color: #666;
     }
 
     .footer a {
@@ -87,24 +116,39 @@
       font-weight: 500;
     }
 
-    .footer strong {
-      display: block;
-      margin-bottom: 4px;
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Mode</button>
+
 <div class="wrapper">
   <img src="logoyappi.png" alt="Logo YAPPI" class="logo">
-
   <h1>Aplikasi Karya Siswa SMK YAPPI Wonosari</h1>
 
   <div class="menu">
-    <a href="https://smkyappiwns.github.io/rpp-generator/">Generator RPP</a>
-    <a href="https://smkyappiwns.github.io/rekap-nilai/">Sistem Penilaian</a>
-    <a href="https://smkyappiwns.github.io/presensi-siswa/">Sistem Presensi</a>
-    <a href="https://daftar.smkyappi-wns.sch.id">SPMB Online</a>
+    <a href="https://smkyappiwns.github.io/rpp-generator/"><span class="icon">📄</span>Generator RPP</a>
+    <a href="https://smkyappiwns.github.io/rekap-nilai/"><span class="icon">📊</span>Sistem Penilaian</a>
+    <a href="https://smkyappiwns.github.io/presensi-siswa/"><span class="icon">📝</span>Sistem Presensi</a>
+    <a href="https://daftar.smkyappi-wns.sch.id"><span class="icon">🧾</span>SPMB Online</a>
   </div>
 
   <div class="footer">
@@ -112,6 +156,18 @@
     SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns">Halaman Github</a>
   </div>
 </div>
+
+<script>
+  // Load theme when page loads
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  }
+</script>
 
 </body>
 </html>
