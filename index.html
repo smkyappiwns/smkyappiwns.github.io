@@ -1,85 +1,173 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplikasi Karya Siswa SMK YAPPI Wonosari</title>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    // Enable dark mode based on localStorage or system theme
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
+  <style>
+    :root {
+      --primary: #14532d;
+      --primary-light: #1e8144;
+      --bg: #f4f6f5;
+      --text: #222;
+      --card-bg: #ffffff;
+      --border: #ddd;
     }
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.classList.toggle('dark');
-      localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    /* Dark Mode Theme Variables */
+    body.dark {
+      --bg: #111;
+      --text: #eaeaea;
+      --card-bg: #1a1a1a;
+      --border: #333;
     }
-  </script>
 
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .wrapper {
+      background: var(--card-bg);
+      padding: 30px 28px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      animation: fadeIn 0.6s ease;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 120px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .menu a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .2px;
+      transition: .25s;
+    }
+
+    .menu a:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .menu a span.icon {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: .25s;
+      font-size: 17px;
+    }
+
+    .menu a:hover span.icon {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex items-center justify-center p-4">
+<body>
 
-  <!-- Toggle Button -->
-  <button onclick="toggleTheme()" class="fixed top-4 right-4 px-3 py-2 rounded-lg bg-white dark:bg-gray-800 shadow border border-gray-200 dark:border-gray-700 text-sm hover:scale-105 transition">
-    🌗 Mode
-  </button>
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Mode</button>
 
-  <!-- Card -->
-  <div class="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-2xl w-full max-w-md p-6 transition-all duration-300">
+<div class="wrapper">
+  <img src="logoyappi.png" alt="Logo YAPPI" class="logo">
+  <h1>Aplikasi Karya Siswa SMK YAPPI Wonosari</h1>
 
-    <img src="logoyappi.png" alt="Logo YAPPI" class="w-28 mx-auto mb-4">
-
-    <h1 class="text-xl font-semibold text-center mb-6">Aplikasi Karya Siswa SMK YAPPI Wonosari</h1>
-
-    <div class="space-y-3">
-
-      <!-- Menu Item -->
-      <a href="https://smkyappiwns.github.io/rpp-generator/" class="flex items-center gap-3 p-3 rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all shadow hover:shadow-lg hover:scale-[1.02]">
-        <!-- Heroicon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-9a3.375 3.375 0 00-3.375 3.375v2.625M16.5 14.25V18a2.25 2.25 0 11-4.5 0v-3.75m-6 0V18a2.25 2.25 0 104.5 0v-3.75M3 9.75h18"/>
-        </svg>
-        Generator RPP
-      </a>
-
-      <a href="https://smkyappiwns.github.io/rekap-nilai/" class="flex items-center gap-3 p-3 rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all shadow hover:shadow-lg hover:scale-[1.02]">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 13.125C3 12.504 3.504 12 4.125 12h15.75c.621 0 1.125.504 1.125 1.125v6.75A2.625 2.625 0 0118.375 22.5H5.625A2.625 2.625 0 013 19.875v-6.75zM6 12V5.625C6 4.175 7.175 3 8.625 3h6.75C16.825 3 18 4.175 18 5.625V12"/>
-        </svg>
-        Sistem Penilaian
-      </a>
-
-      <a href="https://smkyappiwns.github.io/presensi-siswa/" class="flex items-center gap-3 p-3 rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all shadow hover:shadow-lg hover:scale-[1.02]">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m3 6H6a3 3 0 01-3-3V5a3 3 0 013-3h8.379c.398 0 .779.158 1.061.44l4.12 4.12c.282.282.44.663.44 1.061V19a3 3 0 01-3 3z"/>
-        </svg>
-        Sistem Presensi
-      </a>
-
-      <a href="https://daftar.smkyappi-wns.sch.id" class="flex items-center gap-3 p-3 rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all shadow hover:shadow-lg hover:scale-[1.02]">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.5 4.5h15m-15 6h15m-15 6h15"/>
-        </svg>
-        SPMB Online
-      </a>
-
-    </div>
-
-    <!-- Footer -->
-    <div class="text-center text-xs mt-5 opacity-75">
-      💻 Aplikasi Karya Siswa RPL — SMK YAPPI Wonosari  
-      <br>
-      <a href="https://github.com/smkyappiwns" class="text-green-600 dark:text-green-400 hover:underline">Kunjungi GitHub</a>
-    </div>
-
+  <div class="menu">
+    <a href="https://smkyappiwns.github.io/rpp-generator/"><span class="icon">📄</span>Generator RPP</a>
+    <a href="https://smkyappiwns.github.io/rekap-nilai/"><span class="icon">📊</span>Sistem Penilaian</a>
+    <a href="https://smkyappiwns.github.io/presensi-siswa/"><span class="icon">📝</span>Sistem Presensi</a>
+    <a href="https://daftar.smkyappi-wns.sch.id"><span class="icon">🧾</span>SPMB Online</a>
   </div>
+
+  <div class="footer">
+    <strong>💻 Aplikasi Karya Siswa RPL</strong>
+    SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns">Halaman Github</a>
+  </div>
+</div>
+
+<script>
+  // Load theme when page loads
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  }
+</script>
 
 </body>
 </html>
