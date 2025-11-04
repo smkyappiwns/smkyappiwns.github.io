@@ -16,7 +16,6 @@ Repositori ini berisi berbagai **proyek kreatif berbasis web, mobile, dan game**
 Setiap folder berisi satu proyek aplikasi siswa, lengkap dengan:
 - 📁 *Source code*  
 - 🧩 *Deskripsi proyek & fitur utama*  
-- 🚀 *Demo atau link GitHub Pages (jika tersedia)*
 
 ---
 
