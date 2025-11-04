@@ -4,106 +4,114 @@
   <meta name="google-site-verification" content="yEH5npNg0bZLH7TGe032lJv82IDyBrl976KG90U-vlY" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplikasi Karya Siswa SMK YAPPI Wonosari</title>
+
   <style>
+    :root {
+      --primary: #14532d;  /* Hijau gelap elegan */
+      --primary-light: #1e8144;
+      --bg: #f4f6f5;
+      --text: #222;
+      --border: #ddd;
+    }
+
     body {
-      background-color: #379237;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
 
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 15px;
+    .wrapper {
+      background: white;
+      padding: 30px 28px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
     }
 
     .logo {
-      max-width: 150px;
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 120px;
     }
 
-    .container {
-      background-color: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-      max-width: 450px;
-      width: 90%;
-    }
-
-    .header {
-      font-size: 22px;
-      font-weight: bold;
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
       text-align: center;
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 22px;
+      color: var(--text);
     }
 
     .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
 
     .menu a {
       display: block;
-      padding: 12px;
-      background-color: #379237;
+      padding: 14px;
+      background: var(--primary);
       color: white;
       text-decoration: none;
       text-align: center;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 6px;
+      font-size: 15px;
       font-weight: 500;
-      transition: all 0.3s ease;
+      letter-spacing: .2px;
+      transition: 0.25s;
     }
 
     .menu a:hover {
-      background-color: #2a6e2a;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      background: var(--primary-light);
+      transform: translateY(-2px);
     }
 
     .footer {
-      margin-top: 15px;
+      margin-top: 20px;
       font-size: 12px;
       text-align: center;
       color: #666;
     }
 
-    @media (max-width: 500px) {
-      .menu {
-        grid-template-columns: 1fr; /* Jadi 1 kolom di HP */
-      }
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer strong {
+      display: block;
+      margin-bottom: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="logo-container">
-    <img src="logoyappi.png" alt="Logo YAPPI" class="logo">
+
+<div class="wrapper">
+  <img src="logoyappi.png" alt="Logo YAPPI" class="logo">
+
+  <h1>Aplikasi Karya Siswa SMK YAPPI Wonosari</h1>
+
+  <div class="menu">
+    <a href="https://smkyappiwns.github.io/rpp-generator/">Generator RPP</a>
+    <a href="https://smkyappiwns.github.io/rekap-nilai/">Sistem Penilaian</a>
+    <a href="https://smkyappiwns.github.io/presensi-siswa/">Sistem Presensi</a>
+    <a href="https://daftar.smkyappi-wns.sch.id">SPMB Online</a>
   </div>
-  <div class="container">
-    <div class="header">Aplikasi Karya Siswa SMK YAPPI Wonosari</div>
 
-    <div class="menu">
-      <a href="https://smkyappiwns.github.io/rpp-generator/">Generator RPP</a>
-      <a href="https://smkyappiwns.github.io/rekap-nilai/">Sistem Penilaian</a>
-      <a href="https://smkyappiwns.github.io/presensi-siswa/">Sistem Presensi</a>
-      <a href="https://daftar.smkyappi-wns.sch.id">SPMB Online</a>
-
-    </div>
-<div class="footer">
-  <strong>💻 Aplikasi Karya Siswa Jurusan RPL</strong>
-  <span>SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns">Kunjungi Halaman Utama</a></span>
+  <div class="footer">
+    <strong>💻 Aplikasi Karya Siswa RPL</strong>
+    SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns">Halaman Github</a>
+  </div>
 </div>
 
-  </div>
 </body>
 </html>
-
