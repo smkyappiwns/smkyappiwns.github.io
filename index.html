@@ -3,628 +3,174 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplikasi Karya Siswa SMK YAPPI Wonosari</title>
-  <meta charset="utf-8">
 
   <style>
-    :root{
+    :root {
       --primary: #14532d;
       --primary-light: #1e8144;
       --bg: #f4f6f5;
       --text: #222;
-      --card-bg: #fff;
+      --card-bg: #ffffff;
       --border: #ddd;
-      --muted: #666;
-      --radius: 10px;
     }
+
+    /* Dark Mode Theme Variables */
     body.dark {
-      --bg: #0f1112;
-      --text: #e9eef0;
-      --card-bg: #111316;
-      --border: #222;
-      --muted: #9aa3a6;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
-      padding:18px;
-      transition:background .25s, color .25s;
+      --bg: #111;
+      --text: #eaeaea;
+      --card-bg: #1a1a1a;
+      --border: #333;
     }
 
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap:18px;
-      align-items:start;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
     }
 
-    /* mobile: stack */
-    @media (max-width:880px){
-      .container{
-        grid-template-columns: 1fr;
-      }
+    .wrapper {
+      background: var(--card-bg);
+      padding: 30px 28px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      animation: fadeIn 0.6s ease;
+      transition: background 0.3s, border 0.3s;
     }
 
-    .panel {
-      background:var(--card-bg);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:18px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Left menu */
-    .left {
-      position:relative;
-    }
     .logo {
-      display:block;
-      margin:0 auto 10px;
-      max-width:110px;
-    }
-    h1 { font-size:18px; text-align:center; margin: 6px 0 14px; font-weight:700; }
-    .menu-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
-
-    .menu-item {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid transparent;
-      cursor:pointer;
-      text-decoration:none;
-      color:var(--text);
-      transition: transform .12s, box-shadow .12s, border-color .12s, background .12s;
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 120px;
     }
 
-    .menu-item .leftcell { display:flex; gap:12px; align-items:center; }
-    .menu-item .icon {
-      width:44px; height:44px; border-radius:8px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background:var(--primary); color:#fff; font-size:18px;
-      flex-shrink:0;
-    }
-    .menu-item .meta { display:flex; flex-direction:column; }
-    .menu-item .title { font-weight:700; font-size:14px; }
-    .menu-item .subtitle { font-size:12px; color:var(--muted); margin-top:2px; }
-
-    .menu-item:hover, .menu-item:focus {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      border-color: rgba(20,83,45,0.12);
-      outline: none;
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 22px;
     }
 
-    .menu-item.active {
-      background: linear-gradient(180deg, rgba(20,83,45,0.06), transparent);
-      border-color: rgba(20,83,45,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    /* right panel (feature area) */
-    .right {
-      min-height:200px;
+    .menu a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .2px;
+      transition: .25s;
     }
-    .feature-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px;}
-    .feature-title { font-weight:800; font-size:16px; }
-    .feature-sub { font-size:13px; color:var(--muted); }
 
-    .feature-body { display:flex; flex-direction:column; gap:12px; }
-
-    .feature-card {
-      border:1px dashed var(--border);
-      border-radius:10px;
-      padding:12px;
-      background:transparent;
+    .menu a:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px) scale(1.02);
     }
 
-    .btn {
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px; border-radius:8px; text-decoration:none; color:#fff;
-      background:var(--primary); border:none; cursor:pointer; font-weight:700;
+    .menu a span.icon {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: .25s;
+      font-size: 17px;
     }
-    .btn.ghost {
-      background:transparent; color:var(--text); border:1px solid var(--border); font-weight:600;
+
+    .menu a:hover span.icon {
+      opacity: 1;
+      transform: translateX(0);
     }
-    .small { font-size:13px; padding:7px 10px; border-radius:8px; }
 
-    .links-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    @media(max-width:520px){ .links-grid{ grid-template-columns:1fr } }
-
-    .link-item {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:8px; padding:8px 10px; border-radius:8px; background:rgba(0,0,0,0.02);
-      text-decoration:none; color:var(--text);
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      text-align: center;
     }
-    .muted { color:var(--muted); font-size:13px; }
 
-    .footer { margin-top:14px; font-size:13px; color:var(--muted); text-align:center; }
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-    /* focus ring */
-    .menu-item:focus, .btn:focus, .link-item:focus {
-      outline:3px solid rgba(30,129,68,0.14);
-      outline-offset:2px;
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-  <button id="themeBtn" style="position:fixed;right:16px;top:16px;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card-bg);cursor:pointer;">
-    🌓 Mode
-  </button>
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Mode</button>
 
-  <div class="container" role="main" aria-label="Aplikasi Karya Siswa">
-    <!-- LEFT: menu list -->
-    <aside class="panel left" aria-label="Menu aplikasi">
-      <img src="logoyappi.png" alt="Logo YAPPI" class="logo" onerror="this.style.display='none'">
-      <h1>Aplikasi Karya Siswa RPL</h1>
+<div class="wrapper">
+  <img src="logoyappi.png" alt="Logo YAPPI" class="logo">
+  <h1>Aplikasi Karya Siswa SMK YAPPI Wonosari</h1>
 
-      <ul class="menu-list" id="menuList">
-
-        <!-- SPMB (link only) -->
-        <li class="menu-item" tabindex="0" role="button" data-id="spmb" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">🧾</div>
-            <div class="meta">
-              <span class="title">SPMB SMK YAPPI</span>
-              <span class="subtitle">Penerimaan Siswa Baru</span>
-            </div>
-          </div>
-          <div class="muted">Link</div>
-        </li>
-
-        <!-- Generator RPP -->
-        <li class="menu-item" tabindex="0" role="button" data-id="rpp" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">📄</div>
-            <div class="meta">
-              <span class="title">Generator RPP</span>
-              <span class="subtitle">Buat RPP otomatis</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- Generator Asesmen -->
-        <li class="menu-item" tabindex="0" role="button" data-id="asesmen" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">🧾</div>
-            <div class="meta">
-              <span class="title">Generator Asesmen</span>
-              <span class="subtitle">Soal, rubrik, gambar</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- Rekap Nilai -->
-        <li class="menu-item" tabindex="0" role="button" data-id="rekap" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">📊</div>
-            <div class="meta">
-              <span class="title">Sistem Penilaian</span>
-              <span class="subtitle">Rekap & analisis nilai</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- Presensi -->
-        <li class="menu-item" tabindex="0" role="button" data-id="presensi" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">📝</div>
-            <div class="meta">
-              <span class="title">Sistem Presensi</span>
-              <span class="subtitle">Absensi siswa</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- Jadwal Otomatis -->
-        <li class="menu-item" tabindex="0" role="button" data-id="jadwal" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">📅</div>
-            <div class="meta">
-              <span class="title">Jadwal Otomatis</span>
-              <span class="subtitle">Penjadwalan pelajaran</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- Sertifikat -->
-        <li class="menu-item" tabindex="0" role="button" data-id="sertifikat" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">🏅</div>
-            <div class="meta">
-              <span class="title">Sertifikat Maker</span>
-              <span class="subtitle">Cetak sertifikat siswa</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-        <!-- ID Card -->
-        <li class="menu-item" tabindex="0" role="button" data-id="idcard" aria-controls="featurePanel" aria-selected="false">
-          <div class="leftcell">
-            <div class="icon">🆔</div>
-            <div class="meta">
-              <span class="title">Id Card Maker</span>
-              <span class="subtitle">Kartu identitas siswa</span>
-            </div>
-          </div>
-          <div class="muted">Fitur</div>
-        </li>
-
-      </ul>
-
-      <div style="margin-top:14px;font-size:13px;color:var(--muted);text-align:center">
-        SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;font-weight:700">Halaman Github</a>
-      </div>
-    </aside>
-
-    <!-- RIGHT: feature panel -->
-    <section class="panel right" id="featurePanel" aria-live="polite">
-      <div class="feature-header">
-        <div>
-          <div class="feature-title" id="featureTitle">Pilih menu di kiri</div>
-          <div class="feature-sub" id="featureSub">Fitur & README akan tampil di sini.</div>
-        </div>
-        <div>
-          <button class="btn small" id="openLiveBtn" style="display:none" title="Buka Live">Buka Live ↗</button>
-        </div>
-      </div>
-
-      <div class="feature-body" id="featureBody">
-
-        <div class="feature-card" id="emptyCard">
-          <div style="font-weight:700">Petunjuk</div>
-          <div class="muted" style="margin-top:6px">
-            Klik salah satu item pada menu sebelah kiri untuk melihat fitur, README, dan tautan terkait.  
-            Untuk SPMB, akan langsung membuka halaman pendaftaran.
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer" style="margin-top:12px">
-        <div class="muted">Tekan Enter/Space untuk akses via keyboard • Mode gelap tersedia</div>
-      </div>
-    </section>
+  <div class="menu">
+    <a href="https://daftar.smkyappi-wns.sch.id"><span class="icon">🧾</span>SPMB SMK YAPPI Wonosari</a>
+    <a href="https://smkyappiwns.github.io/rpp-generator/"><span class="icon">📄</span>Generator RPP</a>
+    <a href="https://smkyappiwns.github.io/asesmen-generator/"><span class="icon">🧾</span>Generator Asesmen Pembelajaran</a>
+    <a href="https://smkyappiwns.github.io/rekap-nilai/"><span class="icon">📊</span>Sistem Penilaian</a>
+    <a href="https://smkyappiwns.github.io/presensi-siswa/"><span class="icon">📝</span>Sistem Presensi</a>
+    <a href="https://smkyappiwns.github.io/jadwal-otomatis/"><span class="icon">📅</span>Jadwal Otomatis</a>
+    <a href="https://smkyappiwns.github.io/sertifikat-generator/"><span class="icon">🏅</span>Sertifikat Maker</a>
+    <a href="https://smkyappiwns.github.io/generator-idcard/"><span class="icon">🆔</span>Id Card Maker</a>
   </div>
 
+  <div class="footer">
+    <strong>💻 Aplikasi Karya Siswa RPL</strong>
+    SMK YAPPI Wonosari — <a href="https://github.com/smkyappiwns">Halaman Github</a>
+  </div>
+</div>
+
 <script>
-  // Data mapping menu id -> feature info
-  const menuData = {
-    spmb: {
-      title: "SPMB SMK YAPPI",
-      sub: "Pendaftaran Siswa Baru (link langsung)",
-      live: "https://daftar.smkyappi-wns.sch.id",
-      readme: null,
-      repo: null,
-      features: []
-    },
-    rpp: {
-      title: "Generator RPP",
-      sub: "Buat RPP otomatis untuk guru",
-      live: "https://smkyappiwns.github.io/rpp-generator/",
-      readme: "https://github.com/smkyappiwns/rpp-generator/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/rpp-generator",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/rpp-generator/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/rpp-generator/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/rpp-generator"}
-      ]
-    },
-    asesmen: {
-      title: "Generator Asesmen",
-      sub: "Soal, Rubrik, Gambar & Referensi",
-      live: "https://smkyappiwns.github.io/asesmen-generator/",
-      readme: "https://github.com/smkyappiwns/asesmen-generator/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/asesmen-generator",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/asesmen-generator/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/asesmen-generator/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/asesmen-generator"}
-      ]
-    },
-    rekap: {
-      title: "Sistem Penilaian",
-      sub: "Rekap Nilai & Analisis",
-      live: "https://smkyappiwns.github.io/rekap-nilai/",
-      readme: "https://github.com/smkyappiwns/rekap-nilai/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/rekap-nilai",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/rekap-nilai/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/rekap-nilai/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/rekap-nilai"}
-      ]
-    },
-    presensi: {
-      title: "Sistem Presensi",
-      sub: "Absensi siswa",
-      live: "https://smkyappiwns.github.io/presensi-siswa/",
-      readme: "https://github.com/smkyappiwns/presensi-siswa/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/presensi-siswa",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/presensi-siswa/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/presensi-siswa/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/presensi-siswa"}
-      ]
-    },
-    jadwal: {
-      title: "Jadwal Otomatis",
-      sub: "Penjadwalan pelajaran",
-      live: "https://smkyappiwns.github.io/jadwal-otomatis/",
-      readme: "https://github.com/smkyappiwns/jadwal-otomatis/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/jadwal-otomatis",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/jadwal-otomatis/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/jadwal-otomatis/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/jadwal-otomatis"}
-      ]
-    },
-    sertifikat: {
-      title: "Sertifikat Maker",
-      sub: "Cetak sertifikat siswa",
-      live: "https://smkyappiwns.github.io/sertifikat-generator/",
-      readme: "https://github.com/smkyappiwns/sertifikat-generator/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/sertifikat-generator",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/sertifikat-generator/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/sertifikat-generator/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/sertifikat-generator"}
-      ]
-    },
-    idcard: {
-      title: "Id Card Maker",
-      sub: "Kartu identitas siswa",
-      live: "https://smkyappiwns.github.io/generator-idcard/",
-      readme: "https://github.com/smkyappiwns/generator-idcard/blob/main/README.md",
-      repo: "https://github.com/smkyappiwns/generator-idcard",
-      features: [
-        {name:"Live Demo", url:"https://smkyappiwns.github.io/generator-idcard/"},
-        {name:"README.md (GitHub)", url:"https://github.com/smkyappiwns/generator-idcard/blob/main/README.md"},
-        {name:"Repository", url:"https://github.com/smkyappiwns/generator-idcard"}
-      ]
-    }
-  };
-
-  // init theme
-  const themeBtn = document.getElementById('themeBtn');
-  function applyThemeFromStorage(){
-    if(localStorage.getItem('theme') === 'dark'){
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
-      themeBtn.textContent = '🌙 Gelap';
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
-      themeBtn.textContent = '🌓 Mode';
-    }
-  }
-  applyThemeFromStorage();
-  themeBtn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    applyThemeFromStorage();
-  });
-
-  // handle menu clicks and keyboard
-  const menuItems = document.querySelectorAll('.menu-item');
-  const featureTitle = document.getElementById('featureTitle');
-  const featureSub = document.getElementById('featureSub');
-  const featureBody = document.getElementById('featureBody');
-  const openLiveBtn = document.getElementById('openLiveBtn');
-
-  function clearActive(){
-    menuItems.forEach(mi => {
-      mi.classList.remove('active');
-      mi.setAttribute('aria-selected','false');
-    });
+  // Load theme when page loads
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
   }
 
-  function renderFeatures(id){
-    const data = menuData[id];
-    clearActive();
-    const el = document.querySelector('.menu-item[data-id="'+id+'"]');
-    if(el) { el.classList.add('active'); el.setAttribute('aria-selected','true'); el.focus(); }
-
-    featureTitle.textContent = data.title;
-    featureSub.textContent = data.sub || '';
-
-    // Show "Buka Live" button when live exists
-    if(data.live){
-      openLiveBtn.style.display = 'inline-flex';
-      openLiveBtn.onclick = () => window.open(data.live, '_blank', 'noopener');
-    } else {
-      openLiveBtn.style.display = 'none';
-      openLiveBtn.onclick = null;
-    }
-
-    // Build body
-    featureBody.innerHTML = '';
-
-    if(!data.features || data.features.length === 0){
-      // link-only (SPMB)
-      const card = document.createElement('div');
-      card.className = 'feature-card';
-      card.innerHTML = `
-        <div style="font-weight:700;margin-bottom:6px">Tautan Utama</div>
-        <div class="muted" style="margin-bottom:8px">Menu ini tidak memiliki fitur tambahan di panel ini. Klik tombol "Buka Live" untuk membuka halaman terkait.</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn" onclick="window.open('${data.live}','_blank','noopener')">Buka Pendaftaran ↗</button>
-          <button class="btn ghost small" onclick="copyText('${data.live}')">Salin Link</button>
-        </div>
-      `;
-      featureBody.appendChild(card);
-      return;
-    }
-
-    // Features card
-    const featCard = document.createElement('div');
-    featCard.className = 'feature-card';
-    featCard.innerHTML = `<div style="font-weight:700;margin-bottom:8px">Fitur & Dokumentasi</div>`;
-    featureBody.appendChild(featCard);
-
-    // links grid
-    const grid = document.createElement('div');
-    grid.className = 'links-grid';
-    data.features.forEach(f => {
-      const a = document.createElement('a');
-      a.className = 'link-item';
-      a.href = f.url;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = `<span>${f.name}</span><span class="muted">↗</span>`;
-      grid.appendChild(a);
-    });
-    featCard.appendChild(grid);
-
-    // README quick actions
-    const readmeArea = document.createElement('div');
-    readmeArea.style.marginTop = '10px';
-    readmeArea.innerHTML = `
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn" id="openReadmeBtn">Buka README</button>
-        <button class="btn ghost small" id="copyReadmeBtn">Salin Link README</button>
-        <button class="btn ghost small" id="openRepoBtn">Buka Repo</button>
-      </div>
-      <div class="muted" style="margin-top:8px">Catatan: README akan membuka GitHub di tab baru.</div>
-    `;
-    featCard.appendChild(readmeArea);
-
-    // attach actions
-    const openReadmeBtn = readmeArea.querySelector('#openReadmeBtn');
-    const copyReadmeBtn = readmeArea.querySelector('#copyReadmeBtn');
-    const openRepoBtn = readmeArea.querySelector('#openRepoBtn');
-
-    openReadmeBtn.onclick = () => {
-      if(data.readme) window.open(data.readme, '_blank', 'noopener');
-      else alert('README tidak tersedia.');
-    };
-    copyReadmeBtn.onclick = () => copyText(data.readme || '');
-    openRepoBtn.onclick = () => {
-      if(data.repo) window.open(data.repo, '_blank', 'noopener');
-      else alert('Repo tidak tersedia.');
-    };
-
-    // optional: iframe preview of README (if allowed). We'll offer a toggle
-    const previewToggle = document.createElement('div');
-    previewToggle.style.marginTop = '10px';
-    previewToggle.innerHTML = `<label style="font-size:13px;display:flex;align-items:center;gap:8px"><input type="checkbox" id="togglePreview"> Tampilkan preview README di panel</label>`;
-    featCard.appendChild(previewToggle);
-    const togglePreview = previewToggle.querySelector('#togglePreview');
-
-    const iframeWrap = document.createElement('div');
-    iframeWrap.style.marginTop = '10px';
-    iframeWrap.style.display = 'none';
-    iframeWrap.style.border = '1px solid var(--border)';
-    iframeWrap.style.borderRadius = '8px';
-    iframeWrap.style.overflow = 'hidden';
-    iframeWrap.style.minHeight = '260px';
-    // iframe (will set src when toggled)
-    const iframe = document.createElement('iframe');
-    iframe.style.width = '100%';
-    iframe.style.height = '260px';
-    iframe.style.border = '0';
-    iframeWrap.appendChild(iframe);
-    featCard.appendChild(iframeWrap);
-
-    togglePreview.addEventListener('change', () => {
-      if(togglePreview.checked){
-        if(data.readme){
-          // Use raw GitHub URL if possible for better embedding; otherwise open GitHub page.
-          let src = data.readme.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
-          // If the replacement produced a raw file URL, use it; otherwise fall back to GitHub page
-          iframe.src = src.includes('raw.githubusercontent.com') ? src : data.readme;
-        } else {
-          iframe.src = '';
-        }
-        iframeWrap.style.display = 'block';
-      } else {
-        iframeWrap.style.display = 'none';
-        iframe.src = '';
-      }
-    });
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   }
-
-  // copy to clipboard util
-  function copyText(text){
-    if(!text){
-      alert('Tidak ada link untuk disalin.');
-      return;
-    }
-    if(navigator.clipboard){
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Link disalin ke clipboard.');
-      }).catch(()=> {
-        fallbackCopy(text);
-      });
-    } else {
-      fallbackCopy(text);
-    }
-  }
-  function fallbackCopy(text){
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    try {
-      document.execCommand('copy');
-      alert('Link disalin ke clipboard.');
-    } catch(e){
-      prompt('Salin link ini:', text);
-    }
-    document.body.removeChild(ta);
-  }
-
-  // attach events
-  menuItems.forEach(mi => {
-    mi.addEventListener('click', ()=> {
-      const id = mi.getAttribute('data-id');
-      handleSelection(id);
-    });
-    mi.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        const id = mi.getAttribute('data-id');
-        handleSelection(id);
-      }
-    });
-  });
-
-  function handleSelection(id){
-    // if SPMB (link-only), open in new tab and still show guidance
-    if(id === 'spmb'){
-      // also render the feature panel so user sees copy/open options
-      renderFeatures(id);
-      // do not automatically open in case user wants to copy; but offer prompt
-      // if prefer auto-open, uncomment next line:
-      // window.open(menuData[id].live, '_blank', 'noopener');
-      return;
-    }
-    renderFeatures(id);
-  }
-
-  // initial state: no selection
-  document.addEventListener('DOMContentLoaded', () => {
-    // focus first menu item for accessibility
-    menuItems[0].focus();
-    // optionally auto-select first non-spmb (e.g., rpp)
-    // handleSelection('rpp');
-  });
-
 </script>
 
 </body>
