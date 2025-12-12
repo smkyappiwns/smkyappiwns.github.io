@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <title>Aplikasi Karya Siswa</title>
+
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; }
-    iframe { width: 100%; height: 100%; border: none; }
+    /* Reset & Fullscreen Layout */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* Hilangkan scroll pada halaman */
+    }
+
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+      overflow: hidden; /* pastikan iframe tidak scroll */
+    }
   </style>
 </head>
+
 <body>
-
-<iframe src="https://server.smkyappi-wns.sch.id/github/"></iframe>
-
+  <iframe src="https://server.smkyappi-wns.sch.id/github/"></iframe>
 </body>
 </html>
