@@ -1,16 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aplikasi Karya Siswa</title>
+  <meta charset="UTF-8" />
+
+  <!-- RESPONSIVE MOBILE VIEW -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>My Web App</title>
+
+  <!-- FAVICON + ICON RENDER -->
+  <!-- Sesuaikan path icon sesuai folder Anda -->
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+
+  <!-- FONT & BASE STYLE -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; }
-    iframe { width: 100%; height: 100%; border: none; }
+    /* RESET DASAR */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: #f7f7f7;
+      color: #333;
+      height: 100%;
+    }
+
+    /* LAYOUT CONTAINER */
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0057ff;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    main {
+      flex: 1;
+      padding: 16px;
+    }
+
+    /* RESPONSIVE WRAPPER (contoh jika Anda memakai iframe) */
+    .frame-wrapper {
+      width: 100%;
+      height: 75vh;
+      max-height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* RESPONSIVE TEXT / UI */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.1rem;
+        padding: 12px;
+      }
+      main {
+        padding: 10px;
+      }
+      .frame-wrapper {
+        height: 65vh;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <header>
+      Aplikasi Karya Siswa
+    </header>
 
-<iframe src="https://server.smkyappi-wns.sch.id/github/"></iframe>
-
+    <main>
+      <div class="frame-wrapper">
+        <!-- Anda bisa ganti iframe ini atau hapus jika tidak dibutuhkan -->
+        <iframe src="https://server.smkyappi-wns.sch.id/github/"></iframe>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
