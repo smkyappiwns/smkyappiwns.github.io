@@ -1,29 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Aplikasi Karya Siswa</title>
+  <meta charset="utf-8">
+  <!-- penting untuk mobile responsiveness -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Aplikasi Karya Siswa - Fullscreen Iframe</title>
 
   <style>
-    /* Reset & Fullscreen Layout */
+    /* reset */
+    *, *::before, *::after { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden; /* Hilangkan scroll pada halaman */
+      width: 100%;
+      overflow: hidden; /* jangan tampilkan scroll browser */
+      background: #fff; /* sesuaikan */
     }
 
-    iframe {
-      width: 100vw;
-      height: 100vh;
-      border: none;
-      display: block;
-      overflow: hidden; /* pastikan iframe tidak scroll */
+    /* gunakan custom property --vh untuk mengatasi masalah 100vh di mobile */
+    :root {
+      --vh: 1vh;
     }
+
+    /* kontainer fullscreen menggunakan --vh */
+    .iframe-full {
+      width: 100vw;
+      height: calc(var(--vh, 1vh) * 100); /* lebih andal dibanding 100vh pada mobile */
+      display: block;
+      border: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* untuk menghindari gap pada iOS karena notch/home indicator */
+    body, iframe {
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-top: env(safe-area-inset-top);
+    }
+
+    /* pastikan iframe tidak menampilkan border/scrollbar visual */
+    iframe { display: block; border: 0; -webkit-overflow-scrolling: touch; }
   </style>
 </head>
-
 <body>
-  <iframe src="https://server.smkyappi-wns.sch.id/github/"></iframe>
+
+  <!-- ubah src sesuai kebutuhan -->
+  <iframe id="appFrame" class="iframe-full"
+          src="https://server.smkyappi-wns.sch.id/github/"
+          title="Aplikasi YAPPI"
+          scrolling="no"
+          allowfullscreen
+          loading="eager"></iframe>
+
+<script>
+  // Set --vh variable agar height akurat di mobile (mengatasi browser chrome/toolbar)
+  function setVh() {
+    // 1% of viewport height
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+  // jalankan pertama kali
+  setVh();
+
+  // update saat resize/orientation change — debounce ringan
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setVh, 120);
+  }, false);
+
+  // jika ingin mencegah scrolling di sisi window (opsional)
+  window.addEventListener('touchmove', function(e){
+    // jika target bukan iframe, cegah default (mencegah scroll halaman luar)
+    // kosongkan bila Anda ingin izinkan scroll luar
+    // e.preventDefault();
+  }, { passive: false });
+
+  // NOTE: jika konten di dalam iframe lebih tinggi dari tinggi viewport,
+  // pengguna akan kehilangan kemampuan scroll ke konten tersebut karena overflow hidden.
+  // Solusi ideal: buat halaman dalam iframe responsif sehingga muat di layar.
+</script>
+
 </body>
 </html>
